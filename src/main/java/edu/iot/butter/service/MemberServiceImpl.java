@@ -2,6 +2,7 @@ package edu.iot.butter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import edu.iot.butter.dao.MemberDao;
 import edu.iot.butter.model.Login;
@@ -15,31 +16,28 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public Member checkLogin(Login login) {
-		try {
-			Member m = dao.selectOne(login.getUserId());
-			if(m==null) {	//userId가 없음
-				return null;
-			}
-			if(!m.getPassword().equals(login.getPassword())) {	//비밀번호 틀림
-				return null;
-			}
-			return m;
-		}catch(Exception e) {
-			e.printStackTrace();
+	public Member checkLogin(Login login) throws Exception {
+
+		Member member = dao.selectOne(login.getUserId());
+
+		//아이디 존재하고 비밀번호도 일치
+		if(member != null && member.getPassword().equals(login.getPassword())) {
+			return member;
 		}
+
 		return null;
 	}
-
-
 	@Override
-	public void add(Member member) {
-		try {
-			dao.insert(member);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public boolean checkId(String userId)throws Exception{
+		Member member = dao.selectOne(userId);
+		return member != null;
+	}
+
+	@Transactional
+	@Override
+	public boolean create(Member member) throws Exception{
+		int result = dao.insert(member);
+		return result == 1;
 	}
 
 }
