@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,8 +18,39 @@
 <!--  bootstrap stylesheet -->
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="css/main.css"/> 
 <style>
+.jumbotron { 
+    background-color: #f4511e; /* Orange */
+    color: #ffffff;
+    margin:0;
+    border-radius: 0;
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: #f4511e;
+    border: 0;
+    font-size: 12px;
+    line-height: 1.42857143;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+.error{
+	color:red;
+}
 
 </style>
 </head>

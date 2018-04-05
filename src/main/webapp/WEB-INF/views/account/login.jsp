@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h2>로그인</h2>
+	<form:form commandName="login">
+		사용자 ID: 
+		<form:input path="userId" placeholder="Enter userId" value="${login.userId}"/>
+		<form:errors path="userId" cssClass="error"/>
+		<br>
+		비밀번호: 
+		<form:password path="password" placeholder="Enter password"/>
+		<form:errors path="password" cssClass="error"/>
+		<br>
+		<input type="submit">
+	</form:form>	
 </body>
 </html>

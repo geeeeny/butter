@@ -5,4 +5,5 @@ import edu.iot.butter.model.Member;
 
 public interface MemberService {
 	Member checkLogin(Login login);
+	void add(Member member);
 }
