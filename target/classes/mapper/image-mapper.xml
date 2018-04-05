@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.iot.butter.dao.ImageDao">
+	<!-- SQL문과 태그를 매핑 -->
+	
+	<select id="getCount" resultType="int"><![CDATA[
+		select count(*) as total from images
+	]]></select>
+
+	<!-- Member객체에 알아서 넣어주는데, CamelCase=true이므로 setcell_phone이 아니라 setCellPhone을 호출한다. -->
+	<select id="selectList" resultType="Image" parameterType="map"><![CDATA[
+		select image_id, title, description, file_name, thumb_name, 
+		 file_size, mime_type, reg_date from(
+		 select row_number() over (order by image_id) as seq, 
+		 image_id, title, description, file_name, thumb_name, file_size, mime_type, reg_date
+		 from images) where seq between #{start} and #{end}
+	]]></select>
+
+	<select id="selectOne" resultType="Image" parameterType="int"><![CDATA[
+		select * from images
+		where image_id = #{imageId}
+	]]></select>
+
+	<!-- CamelCase=true이므로 getcell_phone이 아니라 getCellPhone을 호출한다. -->
+	<insert id="insert" parameterType="Image"><![CDATA[
+		insert into images
+		(image_id, title, description, file_name, thumb_name, file_size, mime_type)
+		values(images_seq.nextval, #{title}, #{description}, #{fileName}, #{thumbName},
+		#{fileSize}, #{mimeType})
+	]]></insert>
+
+	<update id="update" parameterType="Image"><![CDATA[
+		update images set
+		title=#{title},
+		description=#{description}
+		where image_id=#{imageId}
+	]]></update>
+
+	<delete id="delete" parameterType="int"><![CDATA[
+		delete from images
+		where image_id = #{imageId}
+	]]></delete>
+</mapper>	
