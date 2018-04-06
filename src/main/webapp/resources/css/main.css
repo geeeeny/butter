@@ -1,0 +1,22 @@
+.jumbotron { 
+    background-color: #f4511e; /* Orange */
+    color: #ffffff;
+    margin:0;
+    border-radius: 0;
+}
+.jumbotron a{
+	color:white;
+}
+.jumbotron a:hover{
+	text-decoration: none;
+}
+.error{
+	color:red;
+}
+#body{
+	padding: 30px;
+}
+#footer{
+	padding: 20px;
+	font-size: 9pt;
+}

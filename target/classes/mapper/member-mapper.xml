@@ -38,7 +38,13 @@
 		email=#{email},
 		address=#{address},
 		update_date = sysdate
-		where user_id=#{userId}
+		where user_id=#{userId} and password=#{password}
+	]]></update>
+
+	<update id="changePassword" parameterType="Password"><![CDATA[
+		update members set
+		password=#{newPassword}
+		where user_id=#{userId} and password=#{oldPassword}
 	]]></update>
 
 	<delete id="delete" parameterType="String"><![CDATA[

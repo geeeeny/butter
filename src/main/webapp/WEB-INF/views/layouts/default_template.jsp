@@ -18,25 +18,8 @@
 <!--  bootstrap stylesheet -->
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-<style>
-.jumbotron { 
-    background-color: #f4511e; /* Orange */
-    color: #ffffff;
-    margin:0;
-    border-radius: 0;
-}
-.error{
-	color:red;
-}
-#body{
-	padding: 30px;
-}
-#footer{
-	padding: 20px;
-	font-size: 9pt;
-}
-</style>
+<c:url value="/" var="root" />
+<link rel="stylesheet" href="${root}/resources/css/main.css" />
 </head>
 <body>
 <body>
