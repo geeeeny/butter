@@ -17,26 +17,23 @@
 	<!-- Navbar links -->
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="${root}gallery">Gallery</a>
+			<li class="nav-item"><a class="nav-link" href="${root}gallery">Gallery</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="${root}flickr">Flickr</a>
+			<li class="nav-item"><a class="nav-link" href="${root}flickr">Flickr</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="${root}blog">Blog</a>
+			<li class="nav-item"><a class="nav-link" href="${root}blog">Blog</a>
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="${root}login"><i class="fa fa-sign-in-alt"></i> Login</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="${root}join"><i class="fa fa-user"></i> Join</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="${root}member/profile"><i class="fa fa-edit"></i> ${USER.userId}</a>
-			</li>
+			<li class="nav-item"><a class="nav-link" href="${root}login"><i
+					class="fa fa-sign-in-alt"></i> Login</a></li>
+			<li class="nav-item"><a class="nav-link" href="${root}join"><i
+					class="fa fa-user"></i> Join</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${root}member/profile"><i class="fa fa-edit"></i>
+					${USER.userId}</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${root}admin/member/list"> 회원관리</a></li>
 		</ul>
 	</div>
 </nav>

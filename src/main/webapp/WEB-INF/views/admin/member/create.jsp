@@ -40,7 +40,7 @@ $(function(){
 	
 });
 </script>
-<h2><i class="fa fa-user-plus"></i> 회원가입</h2>
+<h2><i class="fa fa-user-plus"></i> 회원추가</h2>
 <hr>
 <form:form commandName="member" id="join-form">
 	<div class="md-form">
@@ -92,7 +92,7 @@ $(function(){
 	</div>
 	<div class="md-form text-center">
 	<button type="submit" class="btn btn-primary" disabled>
-		<i class="fa fa-check"></i> 회원가입
+		<i class="fa fa-check"></i> 회원추가
 	</button>
 	</div>
 </form:form>
