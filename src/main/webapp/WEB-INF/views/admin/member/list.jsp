@@ -25,8 +25,8 @@
 			<tr>
 				<td>${pagination.start+status.index}</td>
 				<td>
-					<!-- 등록일이 오늘이면 New표시 -->
 					<a href="view/${member.userId}?page=${param.page}">${member.userId}</a>
+					<!-- 등록일이 오늘이면 New표시 -->
 					<c:if test="${regDate == todayStr}">
 						<span class="badge badge-danger">New</span>
 					</c:if>

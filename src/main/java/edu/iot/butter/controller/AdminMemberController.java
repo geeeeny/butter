@@ -87,8 +87,8 @@ public class AdminMemberController {
 	
 	@RequestMapping(value="/edit/{userId}", method=RequestMethod.POST)
 	public String editSubmit(@Valid Member member, 
-							@RequestParam(value="page", defaultValue="1") int page,
 							BindingResult result, 
+							@RequestParam(value="page", defaultValue="1") int page,	
 							HttpSession session) throws Exception{
 		if(result.hasErrors())return "admin/member/edit";
 		

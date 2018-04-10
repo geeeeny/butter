@@ -1,3 +1,8 @@
+#body{
+	padding: 30px;
+}
+
+/* header */
 .jumbotron { 
     background-color: #f4511e; /* Orange */
     color: #ffffff;
@@ -13,10 +18,16 @@
 .error{
 	color:red;
 }
-#body{
-	padding: 30px;
-}
 #footer{
 	padding: 20px;
 	font-size: 9pt;
+}
+/* gallery */
+#keyword {
+	display: inline-block;
+	width: 300px;
+}
+.gray{
+	color:#8f8f8f;
+	font-size: 0.7em;
 }

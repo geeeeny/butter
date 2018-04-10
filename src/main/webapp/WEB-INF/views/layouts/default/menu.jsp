@@ -17,9 +17,9 @@
 	<!-- Navbar links -->
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="${root}gallery">Gallery</a>
+			<li class="nav-item"><a class="nav-link" href="${root}gallery/lightbox">Gallery</a>
 			</li>
-			<li class="nav-item"><a class="nav-link" href="${root}flickr">Flickr</a>
+			<li class="nav-item"><a class="nav-link" href="${root}gallery/flickr">Flickr</a>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="${root}blog">Blog</a>
 			</li>

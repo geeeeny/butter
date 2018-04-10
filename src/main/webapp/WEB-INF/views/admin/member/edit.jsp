@@ -49,7 +49,7 @@
 			<button type="submit" class="btn btn-primary">
 				<i class="fa fa-check"></i>확인
 			</button>
-			<a href="../view/${member.userId}" class="btn btn-primary">돌아가기</a>
+			<a href="../view/${member.userId}?page=${param.page}" class="btn btn-primary">돌아가기</a>
 		</div>
 	</form:form>
 </div>
