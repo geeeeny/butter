@@ -3,17 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<div style="width: 70%" class="mt-4 mb-3 ml-auto mr-auto">
-	<h1>이미지 업로드</h1>
+<div class="container">
+	<h1>
+		<i class="fa fa-images"></i> 이미지 업로드
+	</h1>
+	<hr>
 	<form:form commandName="image" enctype="multipart/form-data">
 		<div class="md-form">
 			<label for="title">제목</label>
-			<form:input path="title" required="required" />
-			<form:errors path="title" />
+			<form:input path="title" class="form-control"/>
 		</div>
 		<div>
 			<label for="description">설명</label>
-			<form:textarea path="description" rows="4" />
+			<form:textarea path="description" rows="4" class="form-control"/>
 		</div>
 		<div>
 			<label>이미지 파일들</label>

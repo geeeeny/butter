@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.iot.butter.dao.BoardDao">
+	
+	<select id="getCount" resultType="int"><![CDATA[
+		select count(*) as total from boards
+	]]></select>
+
+	<!-- 목록용으로 content 컬럼은 제외 -->
+	<select id="selectList" resultType="Board" parameterType="Pagination"><![CDATA[
+		select board_id, title, writer, read_cnt, reg_date from(
+		 select row_number() over (order by board_id desc) as seq, 
+		 board_id, title, writer, read_cnt, reg_date
+		 from boards) where seq between #{start} and #{end}
+	]]></select>
+
+	<select id="selectOne" resultType="Board" parameterType="int"><![CDATA[
+		select * from boards
+		where board_id = #{boardId}
+	]]></select>
+
+	<!-- insert는 삽입된 레코드의 개수를 리턴/ 우리는 첨부파일을 올리기 위해 board_id 정보가 필요-->
+	<!-- Board 매개변수에 테이블의 board_id 값을 boardId 필드에 넣어준다는 의미 -->
+	<insert id="insert" parameterType="Board"
+		useGeneratedKeys="true" keyColumn="board_id" keyProperty="boardId"><![CDATA[
+		insert into boards
+		(board_id, title, writer, password, read_cnt, content, reg_date, update_date)
+		values(boards_seq.nextval, #{title}, #{writer}, #{password}, 0, #{content},
+		sysdate, sysdate)
+	]]></insert>
+
+	<!-- 게시글 수정(제목, 내용만), 비밀번호를 아는 경우에 수정 가능 -->
+	<update id="update" parameterType="Board"><![CDATA[
+		update boards set
+		title=#{title},
+		content=#{content},
+		update_date=sysdate
+		where board_id=#{boardId} and password=#{password}
+	]]></update>
+	
+	<!-- 게시글 조회수 증가: 게시글 보기 할 때마다 호출 -->
+	<update id="increaseReadCnt" parameterType="int"><![CDATA[
+		update boards set
+		read_cnt=read_cnt+1
+		where board_id=#{boardId}
+	]]></update>
+
+	<!-- 게시글 삭제, 비밀번호를 아는 경우에 수정 가능(mybatis는 id로 구분하므로 id 다르게 줘야 함) -->
+	<delete id="deleteByUser" parameterType="Board"><![CDATA[
+		delete from boards
+		where board_id = #{boardId} and password=#{password}
+	]]></delete>
+	
+	<!-- 게시글 삭제, 관리자 삭제 기능 -->
+	<delete id="delete" parameterType="int"><![CDATA[
+		delete from boards
+		where board_id = #{boardId}
+	]]></delete>
+</mapper>	

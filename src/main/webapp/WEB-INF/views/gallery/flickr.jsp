@@ -21,6 +21,8 @@ $(function(){
 	<h1>
 		<i class="fa fa-images"></i> Flickr Gallery
 	</h1>
+	<hr>
+
 	<!-- Search form -->
 	<div class="active-cyan-3 active-cyan-4 mb-4">
 		<input type="text" id="keyword" class="form-control" placeholder="Search" aria-label="Search">

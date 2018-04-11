@@ -21,15 +21,16 @@
 <c:url value="/" var="root" />
 <link rel="stylesheet" href="${root}/resources/css/main.css" />
 </head>
+
 <body>
-<body>
+	<nav id="menu" class="navbar fixed-top navbar-expand-lg navbar-dark pink scrolling-navbar">
+		<tiles:insertAttribute name="menu" />
+	</nav>
+	<header>
+		<tiles:insertAttribute name="header" />
+	</header>
 	<div class="container">
-		<header>
-			<tiles:insertAttribute name="header" />
-		</header>
-		<nav>
-			<tiles:insertAttribute name="menu" />
-		</nav>
+
 		<div id="body">
 			<tiles:insertAttribute name="body" />
 		</div>
@@ -37,7 +38,6 @@
 			<tiles:insertAttribute name="footer" />
 		</footer>
 </div>
-</body>
 </body>
 
 </html>

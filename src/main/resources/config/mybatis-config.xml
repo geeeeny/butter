@@ -9,6 +9,7 @@
 	<settings>
 		<setting name="cacheEnabled" value="false" />
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 자동발급되는 키 추출하기 -->
 		<setting name="useGeneratedKeys" value="true" />
 	</settings>
 	

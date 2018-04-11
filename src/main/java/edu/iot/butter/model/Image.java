@@ -2,6 +2,8 @@ package edu.iot.butter.model;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import lombok.Data;
 
 @Data

@@ -4,7 +4,6 @@
 
 <c:url value="/" var="root" />
 
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 	<!-- Brand -->
 	<a class="navbar-brand" href="${root}">Seojin :D</a>
 
@@ -17,23 +16,33 @@
 	<!-- Navbar links -->
 	<div class="collapse navbar-collapse" id="collapsibleNavbar">
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="${root}gallery/lightbox">Gallery</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="${root}gallery/flickr">Flickr</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="${root}blog">Blog</a>
-			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="${root}gallery/lightbox">Gallery</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${root}gallery/flickr">Flickr</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="${root}board/list">Board</a></li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item"><a class="nav-link" href="${root}login"><i
-					class="fa fa-sign-in-alt"></i> Login</a></li>
-			<li class="nav-item"><a class="nav-link" href="${root}join"><i
-					class="fa fa-user"></i> Join</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${root}member/profile"><i class="fa fa-edit"></i>
-					${USER.userId}</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="${root}admin/member/list"> 회원관리</a></li>
+			<c:choose>
+				<c:when test="${not empty USER}">
+					<c:if test="${USER.userId=='admin'}">
+						<li class="nav-item"><a class="nav-link"
+							href="${root}admin/member/list"> 회원관리</a></li>
+					</c:if>
+					<li class="nav-item"><a class="nav-link"
+						href="${root}member/profile"><i class="fa fa-edit"></i>
+							${USER.userId}</a></li>
+					<li class="nav-item"><a class="nav-link" href="${root}logout"><i
+							class="fa fa-sign-in-alt"></i> Logout</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="nav-item"><a class="nav-link" href="${root}login"><i
+							class="fa fa-sign-in-alt"></i> Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="${root}join"><i
+							class="fa fa-user"></i> Join</a></li>
+				</c:otherwise>
+			</c:choose>
+
 		</ul>
 	</div>
-</nav>

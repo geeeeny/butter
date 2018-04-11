@@ -7,8 +7,8 @@
 		class="fa fa-user-plus"></i>추가</a>)
 </div>
 <!-- 현재 페이지에 있는 멤버 정보 출력 -->
-<table class="table table-stripped">
-	<thead>
+<table class="table table-hover table-sm">
+	<thead class="blue-grey lighten-4">
 		<tr>
 			<th style="width: 60">No</th>
 			<th>사용자 ID</th>
