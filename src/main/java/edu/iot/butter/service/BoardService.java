@@ -21,8 +21,10 @@ public interface BoardService {
 	public boolean update(Board board, List<MultipartFile> fileList) throws Exception;
 	
 	public Attachment getAttachment(int attachmentId) throws Exception;
-	
+	/*	
 	public boolean delete(Board board) throws Exception;
 	
 	public boolean delete(int boardId) throws Exception;
+	*/
+	public boolean deleteAttachment(int attachmentId) throws Exception;
 }

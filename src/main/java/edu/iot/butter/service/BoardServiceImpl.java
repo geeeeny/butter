@@ -60,7 +60,7 @@ public class BoardServiceImpl implements BoardService {
 		upload(board.getBoardId(), fileList);
 		return result == 1;
 	}
-
+/*
 	@Override
 	public boolean delete(Board board) throws Exception {
 		// TODO Auto-generated method stub
@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+*/
 	public boolean upload(int boardId, List<MultipartFile> fileList) throws Exception{
 		for(MultipartFile file:fileList) {
 			if(!file.isEmpty()) {
@@ -95,5 +95,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Attachment getAttachment(int attachmentId) throws Exception {
 		return attachmentDao.selectOne(attachmentId);
+	}
+	
+	@Transactional
+	@Override
+	public boolean deleteAttachment(int attachmentId) throws Exception{
+		return attachmentDao.delete(attachmentId)==1;
 	}
 }

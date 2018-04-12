@@ -12,6 +12,32 @@
 			selector : 'textarea',
 			language : 'ko_KR',
 			height : "300"
+		});	
+		
+		$('.attachment').click(function(e){
+			e.preventDefault();
+			var attachmentId = $(this).data('target');
+			console.log(attachmentId);
+			
+			//폼을 ajax로 post할 때 데이터 추출 메서드
+			var data = $('#board').serialize();
+			//data 값을 ajax 메서드의 data필드에 지정
+			console.log(data);
+			
+			var parent = $(this).parent();	//이벤트를 발생시킨 객체가 this
+			
+			$.ajax({
+				url: '../delete_attachment/'+attachmentId,
+				type: 'delete',
+				success: function(result){
+					if(result){	//삭제 성공시
+						console.log(this);	//ajax 객체가 this
+						parent.remove();	//화면상에서 제거
+					}else{
+						alert('첨부 파일 삭제 실패');
+					}
+				}
+			});
 		});
 	})
 </script>
@@ -38,7 +64,7 @@
 		<div class="col-md-10">
 			<c:forEach var="file" items="${board.attachments}">
 				<div>
-					<i class="fa fa-file"></i> ${file.fileName} <a href="#"
+					<i class="fa fa-file"></i> ${file.fileName} <a href="#" class="attachment"
 						data-target="${file.attachmentId}"> <i class="fa fa-trash"></i>
 					</a>
 				</div>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -105,4 +106,13 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
+	
+	@ResponseBody	//view를 찾지않고 브라우저에게 처리 결과를 직접 응답(리턴)
+	@RequestMapping(value="/delete_attachment/{attachmentId}", method=RequestMethod.DELETE)
+	public boolean delete(@PathVariable int attachmentId) throws Exception{
+		System.out.println(attachmentId);
+		//첨부파일 삭제
+		return service.deleteAttachment(attachmentId);
+	}
+	
 }

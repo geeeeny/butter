@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,8 @@ public class AccountController {
 	MemberService service;
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginForm(Login login) {
+	public String loginForm(Login login, @ModelAttribute("url") String url) {
+		login.setUrl(url);
 		return "account/login";
 	}
 	
@@ -43,6 +45,10 @@ public class AccountController {
 	
 		Member member = service.checkLogin(login); //여기서 예외 발생(로그인 실패)하면 handleLoginError()호출됨
 		session.setAttribute("USER", member);
+		
+		String url = login.getUrl();
+		if(url!=null && !url.isEmpty()) return "redirect:"+url;
+		
 		return "redirect:/";
 	}
 	
@@ -68,7 +74,7 @@ public class AccountController {
 		
 		ra.addFlashAttribute("member", member); //redirect된 페이지에서 한 번 쓰이고 세션에서 제거
 		service.create(member); //여기서 예외 발생하면 handleError()호출됨
-		return "redirect:account/join_success";
+		return "redirect:/join_success";
 	}
 	
 	@RequestMapping(value="/join_success", method=RequestMethod.GET)
