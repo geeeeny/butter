@@ -11,7 +11,7 @@ var replyTempl = {
 		</div>`,
 		
 	// 한개의 Reply에 대응하는 Media Object 생성
-	mediaObejctTempl : function(reply, writer) {
+	mediaObjectTempl : function(reply, writer) {
 		var obj = $(`
 		<div class="media d-block d-md-flex mt-3"
 			data-reply-id="${reply.replyId}"
@@ -49,5 +49,20 @@ var replyTempl = {
 		} 
 		
 	},
+	
+	// 하위 댓글 추가 템플릿
+	addTempl : `
+		<textarea></textarea>
+		<button class="reply-add">
+			<i class="fa fa-share-square"></i></button>
+		<button class="reply-cancel">
+			<i class="fa fa-undo"></i></button>`,
+			
+	editTempl :`
+		<textarea></textarea>
+		<button class="reply-edit">
+			<i class="fa fa-share-square"></i></button>
+		<button class="reply-edit-cancel">
+			<i class="fa fa-undo"></i></button>`,
 	
 };
