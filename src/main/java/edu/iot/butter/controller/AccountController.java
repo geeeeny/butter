@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.iot.butter.exception.LoginFailException;
+import edu.iot.butter.model.Avata;
 import edu.iot.butter.model.Login;
 import edu.iot.butter.model.Member;
 import edu.iot.butter.service.MemberService;
@@ -68,9 +70,16 @@ public class AccountController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinSubmit(@Valid Member member,
 								BindingResult result,
+								@RequestParam("avata") MultipartFile mFile,
 								RedirectAttributes ra) throws Exception {
 		//유효성 검사 결과 실패
 		if(result.hasErrors()) return "account/join";
+		
+		//아바타 저장
+		if(mFile!=null && !mFile.isEmpty()) {
+			service.insertAvata(new Avata(member.getUserId(), 
+										mFile.getBytes()));
+		}
 		
 		ra.addFlashAttribute("member", member); //redirect된 페이지에서 한 번 쓰이고 세션에서 제거
 		service.create(member); //여기서 예외 발생하면 handleError()호출됨

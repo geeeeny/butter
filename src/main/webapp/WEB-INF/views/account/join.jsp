@@ -42,7 +42,7 @@ $(function(){
 </script>
 <h2><i class="fa fa-user-plus"></i> 회원가입</h2>
 <hr>
-<form:form commandName="member" id="join-form">
+<form:form commandName="member" id="join-form" enctype="multipart/form-data">
 	<div class="md-form">
 		<i class="fa fa-user prefix grey-text"></i>
 		<label for="userId">사용자 ID</label>
@@ -59,6 +59,10 @@ $(function(){
 		<label for="name">이름</label>
 		<form:input path="name" value="${member.name}" class="form-control"/>
 		<form:errors path="name" element="div" cssClass="error"/>
+	</div>
+	<div class="mb-3">
+		<label for="avata">아바타 이미지</label>
+		<input type="file" name="avata"/>
 	</div>
 	<div class="md-form">
 		<i class="fa fa-lock prefix grey-text"></i>

@@ -5,12 +5,19 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import edu.iot.butter.model.Avata;
 import edu.iot.butter.model.Member;
 import edu.iot.butter.model.Password;
 import edu.iot.butter.service.MemberService;
@@ -44,6 +51,7 @@ public class ProfileController {
 	@RequestMapping(value="/edit", method=RequestMethod.POST)
 	public String editSubmit(@Valid Member member, 
 								BindingResult result, 
+								@RequestParam("avata") MultipartFile mFile,
 								HttpSession session) throws Exception {
 		if(result.hasErrors())return "member/edit";
 		
@@ -53,9 +61,14 @@ public class ProfileController {
 			return "member/edit";
 		}
 		
+		// 아바타 수정
+		if(mFile != null && !mFile.isEmpty()) {
+		service.updateAvata(new Avata(member.getUserId(),
+		mFile.getBytes()));
+		}
+		
 		session.setAttribute("USER", member);
 		return "redirect:profile";
-		
 	}
 	
 	@RequestMapping(value="/changepassword", method=RequestMethod.GET)
@@ -76,5 +89,15 @@ public class ProfileController {
 
 		return "redirect:profile";
 		
+	}
+	
+	//아바타 이미지 내보내기
+	@RequestMapping(value="/avata", method=RequestMethod.GET)
+	public ResponseEntity<byte[]> getAvata( //ResponseEntity: HttpResponse를 추상화해주는 객체
+			@RequestParam("userId") String userId) throws Exception {
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_JPEG); //mime type 지정
+		// body, hearder, 응답코드
+		return new ResponseEntity<byte[]>(service.getAvata(userId), headers, HttpStatus.OK);
 	}
 }

@@ -18,7 +18,9 @@
 <!--  bootstrap stylesheet -->
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<c:url value="/" var="root" />
+<c:set value="${pageContext.request.contextPath}/" var="root" scope="request"/>
+<%-- <c:url value="/" var="root" /> 이제 필요 없음--%>
+<script src="<c:url value="/resources/js/common.js"/>"></script>
 <link rel="stylesheet" href="${root}/resources/css/main.css" />
 </head>
 

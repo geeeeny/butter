@@ -6,7 +6,7 @@
 
 <div id="join-form" class="join-form">
 	<h2 class="pb-4"><i class="fa fa-user-plus"></i> 정보 수정</h2>
-	<form:form commandName="member">
+	<form:form commandName="member" enctype="multipart/form-data">
 		<div>
 			<label for="userId">사용자 ID: ${member.userId}</label>
 			<form:hidden path="userId"/>
@@ -17,6 +17,12 @@
 			<form:hidden path="name"/>
 		</div>
 		
+		<div class="mb-3">
+			<img src="avata?userId=${member.userId}">
+			<label for="avata">아바타 이미지</label>
+			<input type="file" name="avata"/>
+		</div>
+
 		<div class="md-form">
 			<label for="password">비밀번호</label>
 			<form:password path="password"/>

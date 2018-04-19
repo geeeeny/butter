@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.iot.butter.dao.AvataDao">
+
+	<select id="selectOne" resultType="Avata" parameterType="String"><![CDATA[
+		select * from avatas
+		where user_id = #{userId}
+	]]></select>
+
+	<insert id="insert" parameterType="Avata"><![CDATA[
+		insert into avatas
+		(user_id, image)
+		values(#{userId}, #{image})
+	]]></insert>
+	
+	<update id="update" parameterType="Avata"><![CDATA[
+		update avatas set
+			image = #{image}
+		where user_id = #{userId}
+	]]></update>
+	
+	<delete id="delete" parameterType="String"><![CDATA[
+		delete from avatas
+		where user_id = #{userId}
+	]]></delete>
+
+</mapper>

@@ -26,3 +26,13 @@
 	 margin:0 auto;
 }
 
+.avata{
+	width: 50px;
+}
+.avata-small{
+	width: 30px;
+}
+.avata-large{
+	width: 100px;
+}
+

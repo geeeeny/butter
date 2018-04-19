@@ -2,6 +2,7 @@ package edu.iot.butter.service;
 
 import java.util.List;
 
+import edu.iot.butter.model.Avata;
 import edu.iot.butter.model.Login;
 import edu.iot.butter.model.Member;
 import edu.iot.butter.model.Pagination;
@@ -21,4 +22,10 @@ public interface MemberService {
 	//관리자만 호출하는 메서드
 	boolean updateByAdmin(Member member) throws Exception;
 	boolean changePasswordByAdmin(Password password) throws Exception;
+
+	//아바타 처리
+	byte[] getAvata(String userId) throws Exception;
+	boolean insertAvata(Avata avata) throws Exception;
+	boolean updateAvata(Avata avata) throws Exception;
+	boolean deleteAvata(String userId) throws Exception;
 }

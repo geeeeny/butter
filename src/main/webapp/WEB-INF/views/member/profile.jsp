@@ -14,7 +14,12 @@
 	<div class="col-md-2">이름</div>
 	<div class="col-md-10">${member.name}</div>
 </div>
-
+<div class="row">
+	<div class="col-md-2">아바타</div>
+	<div class="col-md-10">
+		<img src="avata?userId=${member.userId}">
+	</div>
+</div>
 <div class="row">
 	<div class="col-md-2">전화번호</div>
 	<div class="col-md-10">${member.cellPhone}</div>
