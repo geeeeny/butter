@@ -9,7 +9,7 @@ var replyTempl = {
 				<i class="fa fa-share-square"></i> 등록</a>
 			</div>
 		</div>`,
-		
+	
 	// 한개의 Reply에 대응하는 Media Object 생성
 	mediaObjectTempl : function(reply, writer) {
 		var obj = $(`

@@ -1,0 +1,31 @@
+
+.talk-message{
+	background-color: lightgray;
+	border-radius: 5px;
+	padding: 5px;
+	display: inline-block;
+	position: relative;
+}
+/* 왼쪽 삼각형 :: 는 가상 엘리먼트 */
+.send-message::before{
+	content: " ";
+	position: absolute;
+	top: 15px;
+	right: 100%;
+	margin-top: -10px;
+	border-width: 6px;
+	border-style: solid;
+	border-color: transparent lightgray transparent transparent;
+}
+
+/* 오른쪽 삼각형 */
+.receive-message::after{
+	content: " ";
+	position: absolute;
+	top: 15px;
+	left: 100%;
+	margin-top: -10px;
+	border-width: 6px;
+	border-style: solid;
+	border-color: transparent transparent transparent lightgray;
+}

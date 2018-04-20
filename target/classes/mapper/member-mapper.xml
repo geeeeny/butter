@@ -68,4 +68,17 @@
 		delete from members
 		where user_id = #{userId}
 	]]></delete>
+	
+	<select id="selectListWithMessages" resultType="Member" parameterType="String"><![CDATA[
+		select *
+		from
+			members m,
+			( SELECT with_talk, count(*) newMessages FROM talks
+			WHERE checked = 0 and user_Id = #{userId}
+			group by with_talk
+			) t
+		where
+			m.user_id <> #{userId} and
+			m.user_id = t.with_talk(+)
+	]]></select>
 </mapper>	

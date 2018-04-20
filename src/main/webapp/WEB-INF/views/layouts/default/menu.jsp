@@ -35,6 +35,11 @@
 							${USER.userId}
 						</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${root}talk/home">
+							<i class="fa fa-comments"></i>
+						</a>
+					</li>
 					<li class="nav-item"><a class="nav-link" href="${root}logout"><i
 							class="fa fa-sign-in-alt"></i> Logout</a></li>
 				</c:when>

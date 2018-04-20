@@ -55,3 +55,40 @@ CREATE TABLE REPLIES(
 select * from replies;
 
 CREATE SEQUENCE REPLIES_SEQ;
+
+-- 채팅
+CREATE TABLE TALKS (
+	TALK_ID NUMBER PRIMARY KEY,	
+	USER_ID VARCHAR2(20),		--보낸 사람
+	WITH_TALK VARCHAR2(20),		--받는 사람
+	RECEIVED NUMBER(1),			--1: 수신, 0: 발신
+	CHECKED NUMBER(1),			--확인 여부
+	MESSAGE VARCHAR2(1024),
+	REG_DATE DATE
+);
+
+CREATE SEQUENCE TALKS_SEQ;
+
+--test data
+insert into talks(talk_id, user_id, with_talk, received, checked, message, reg_date)
+values(talks_seq.nextval, 'go', 'admin', 0, 0, '공지1', sysdate);
+
+insert into talks(talk_id, user_id, with_talk, received, checked, message, reg_date)
+values(talks_seq.nextval, 'go', 'admin', 0, 0, '공지2', sysdate);
+
+insert into talks(talk_id, user_id, with_talk, received, checked, message, reg_date)
+values(talks_seq.nextval, 'go', 'hong', 0, 0, '안녕', sysdate);
+
+-- 회원별 신규 메시지 개수 출력
+select with_talk, count(*) newMessages from talks
+where checked=0 and user_id='go'
+group by with_talk;
+
+select user_id, name, newMessages
+from
+	members m,
+	(select with_talk, count(*) newMessages from talks
+		where checked=0 and user_id='go'
+		group by with_talk
+	) t
+where m.user_id<>'go' and m.user_id=t.with_talk(+);

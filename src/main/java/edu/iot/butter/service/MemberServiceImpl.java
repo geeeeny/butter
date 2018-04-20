@@ -124,4 +124,9 @@ public class MemberServiceImpl implements MemberService {
 		return avataDao.delete(userId)==1;
 	}
 
+	@Override
+	public List<Member> getListWithMessages(String userId) throws Exception {
+		return dao.selectListWithMessages(userId);
+	}
+
 }

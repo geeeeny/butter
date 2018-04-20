@@ -17,14 +17,11 @@ public class Member {
 	
 	@NotEmpty(message="전화번호를 입력하세요.")
 	private String cellPhone;
-	
-	@NotEmpty(message="이메일을 입력하세요.")
-	private String email;
-	
-	@NotEmpty(message="주소를 입력하세요.")
-	private String address;
 
+	private String email;
+	private String address;
 	private int grade;
+	private int newMessages; //신규 메시지 개수
 	private Date regDate;
 	private Date updateDate;
 

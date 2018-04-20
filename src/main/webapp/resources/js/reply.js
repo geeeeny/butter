@@ -49,7 +49,7 @@ function makeMediaObject(writer, item) {
 	// 자식 reply에 대해서 재귀 호출
 	item.children.forEach(child=>{
 		var child = makeMediaObject(writer, child);
-		self.find('.children').append(child);
+		self.find('.children').eq(0).append(child);
 	});
 	return self;
 }
@@ -90,7 +90,7 @@ $.fn.replyList = function(opt) {
 		opt.api.create(reply,function(result){
 			if(result) {
 				result.regDate = new Date(result.regDate);
-				obj.find('.children').prepend(replyTempl.mediaObjectTempl(result,reply.writer));
+				obj.find('.children').eq(0).prepend(replyTempl.mediaObjectTempl(result,reply.writer));
 				obj.find('.work').empty();
 			} else {
 				alert('댓글 쓰기 실패')
@@ -133,6 +133,23 @@ $.fn.replyList = function(opt) {
 		});
 	}
 	
+	//댓글 삭제 이벤트 핸들러, this는 삭제 버튼 
+	function deleteContent() { 
+		var self = $(this); 
+		var media = $(this).closest('.media'); 
+		opt.api.remove(media.data('reply-id'), // replyId 추출 
+				function(result){ 
+			if(result) { // 삭제 성공시 
+					media.find('.reply-content').eq(0) .text('삭제된 글입니다.'); 
+					self.parent().remove(); // 버튼 그룹 제거 
+			} else { 
+				alert('삭제 실패'); 
+			} 
+		}); 
+		
+	}
+
+	
 	// 하위 댓글 추가 관련
 	this.on('click', '.reply-add-show', showReplyPanel);
 	this.on('click', '.reply-cancel', hideReplyPanel);
@@ -141,6 +158,8 @@ $.fn.replyList = function(opt) {
 	this.on('click', '.reply-edit-show', showEditPanel); 
 	this.on('click', '.reply-edit-cancel',hideEditPanel); 
 	this.on('click', '.reply-edit', editReply);
+	// 댓글 삭제 관련 이벤트 핸들러
+	this.on('click', '.reply-delete',deleteContent);
 	
 	return this; 
 }

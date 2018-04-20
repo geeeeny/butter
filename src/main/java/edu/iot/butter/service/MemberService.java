@@ -28,4 +28,6 @@ public interface MemberService {
 	boolean insertAvata(Avata avata) throws Exception;
 	boolean updateAvata(Avata avata) throws Exception;
 	boolean deleteAvata(String userId) throws Exception;
+	
+	List<Member> getListWithMessages(String userId) throws Exception;
 }
