@@ -5,7 +5,7 @@ var talkTempl = {
 			<img src="/butter/member/avata?userId=${msg.userId}"
 				class="d-flex mr-3 rounded-circle avata">
 			<div class="media-body text-left ml-3 mr-5">
-				<div class="small">${msg.regDate.str()}</div>
+				<div class="small">${msg.regDate.toDatetime()}</div>
 				<div class="talk-message send-message">
 					${msg.message}</div>
 			</div>
@@ -15,9 +15,9 @@ var talkTempl = {
 	receiveTempl: function(msg){
 		return `
 		<div class="media my-1">
-			<div class="media-body text-left ml-3 mr-5">
-				<div class="small">${msg.regDate.str()}</div>
-				<div class="talk-message send-message">
+			<div class="media-body text-right ml-3 mr-5">
+				<div class="small">${msg.regDate.toDatetime()}</div>
+				<div class="talk-message receive-message">
 					${msg.message}</div>
 			</div>
 			<img src="/butter/member/avata?userId=${msg.withTalk}"
@@ -51,13 +51,13 @@ class Talk{
 
 	initMessage(messages) { 
 		var self = this; 
-		messages.forEach( function(msg) { 
+		messages.forEach(function(msg) { 
 			msg.regDate = new Date(msg.regDate);
 			if(msg.received == 1) { // 수신 데이터 
 				self.opt.panel.append(talkTempl.receiveTempl(msg)); 
 			} else { // 전송 데이터 
 				self.opt.panel.append(talkTempl.sendTempl(msg)); 
-				} 
+			} 
 		}); 
 		self.opt.panel.parent().scrollTop(self.opt.panel.height()); 
 	}

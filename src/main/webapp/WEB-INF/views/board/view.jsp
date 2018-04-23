@@ -4,6 +4,7 @@
 
 <c:url value="/api/reply/${board.boardId}" var="apiUrl"/>
 <script src="<c:url value="/resources/js/rest.js"/>"></script>
+<script src="<c:url value="/resources/js/reply.js"/>"></script>
 <script src="<c:url value="/resources/js/reply.templ.js"/>"></script>
 
 <script>

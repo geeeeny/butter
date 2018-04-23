@@ -35,10 +35,13 @@
 							${USER.userId}
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="${root}talk/home">
-							<i class="fa fa-comments"></i>
-						</a>
+					<li class="nav-item"> 
+						<a class="nav-link" href="${root}talk/home"> 
+							<i class="fa fa-comments"></i> 
+							<c:if test="${newTalks>0}"> 
+								<span class="badge badge-pill pink"> ${newTalks} </span> 
+							</c:if> 
+						</a> 
 					</li>
 					<li class="nav-item"><a class="nav-link" href="${root}logout"><i
 							class="fa fa-sign-in-alt"></i> Logout</a></li>
