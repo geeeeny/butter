@@ -18,6 +18,8 @@
 			<li class="nav-item"><a class="nav-link"
 				href="${root}gallery/lightbox">Gallery</a></li>
 			<li class="nav-item"><a class="nav-link"
+				href="${root}gallery/api_view">Gallery2</a></li>
+			<li class="nav-item"><a class="nav-link"
 				href="${root}gallery/flickr">Flickr</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="${root}board/list">Board</a></li>

@@ -91,4 +91,19 @@ from
 		where checked=0 and user_id='go'
 		group by with_talk
 	) t
-where m.user_id<>'go' and m.user_id=t.with_talk(+);
+where m.user_id<>'go' and m.user_id=t.with_talk(+)
+order by newMessages DESC;
+
+-- 회원별 최근 등록된 talk 출력
+SELECT MAX(TALK_ID) FROM TALKS
+WHERE USER_ID='go' AND RECEIVED=1
+GROUP BY WITH_TALK;
+
+SELECT * FROM TALKS
+WHERE USER_ID='go' AND RECEIVED=1
+AND TALK_ID IN (
+	SELECT MAX(TALK_ID) FROM TALKS
+	WHERE USER_ID='go' AND RECEIVED=1
+	GROUP BY WITH_TALK
+)
+ORDER BY REG_DATE DESC;

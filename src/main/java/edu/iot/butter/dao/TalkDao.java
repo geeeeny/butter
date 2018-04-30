@@ -11,6 +11,8 @@ public interface TalkDao {
 	
 	List<Talk> selectList(Talk talk) throws Exception;
 	
+	List<Talk> selectOneListPerUser(String userId) throws Exception;
+	
 	List<Talk> getNewTalks(String userId) throws Exception;
 	
 	int insert(Talk talk) throws Exception;
@@ -18,4 +20,5 @@ public interface TalkDao {
 	int delete(int talkId) throws Exception;
 	
 	int updateCheck(Talk talk) throws Exception;
+	
 }

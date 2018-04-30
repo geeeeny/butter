@@ -20,6 +20,16 @@
 		select * from talks
 		where talk_id = #{talkId}
 	]]></select>
+	
+	<select id="selectOneListPerUser" parameterType="String" resultType="Talk">
+		select * from talks
+		where talk_id in (
+			select max(talk_id) from talks
+			where user_id=#{userId}
+			group by with_talk
+		)
+		order by reg_date desc
+	</select>
 
 	<select id="getNewTalks" resultType="Talk" parameterType="String"><![CDATA[
 		select * from talks

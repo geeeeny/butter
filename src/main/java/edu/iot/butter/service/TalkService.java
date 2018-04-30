@@ -18,4 +18,6 @@ public interface TalkService {
 	List<Talk> getNewTalks(String userId) throws Exception;
 	
 	boolean updateCheck(Talk talk) throws Exception;
+
+	List<Talk> selectOneListPerUser(String userId) throws Exception;
 }

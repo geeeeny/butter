@@ -2,9 +2,13 @@ package edu.iot.butter.model;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Reply {
 	private int replyId; 	// 댓글 번호
 	private int boardId; 	// 글 그룹(게시글 ID)

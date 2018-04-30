@@ -49,4 +49,9 @@ public class TalkServiceImpl implements TalkService {
 		return dao.updateCheck(talk)>0;
 	}
 
+	@Override
+	public List<Talk> selectOneListPerUser(String userId) throws Exception{
+		return dao.selectOneListPerUser(userId);
+	}
+
 }

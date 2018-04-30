@@ -80,5 +80,6 @@
 		where
 			m.user_id <> #{userId} and
 			m.user_id = t.with_talk(+)
+			order by newMessages ASC
 	]]></select>
 </mapper>	

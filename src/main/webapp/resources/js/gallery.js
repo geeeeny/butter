@@ -1,33 +1,36 @@
-var talkTempl = {
-	sendTempl: function(msg){
+var templ = {
+	tableTempl: `
+		<table class="table">
+			<tbody>
+			</tbody>
+		</table>
+	`,
+		
+	trTempl: function(image){
 		return `
-		<div class="media my-1">
-			<img src="/butter/member/avata?userId=${msg.userId}"
-				class="d-flex mr-3 rounded-circle avata">
-			<div class="media-body text-left ml-3 mr-5">
-				<div class="small">${msg.regDate.toDatetime()}</div>
-				<div class="talk-message send-message">
-					${msg.message}</div>
-			</div>
-		</div>`;
-	},
-	
-	receiveTempl: function(msg){
-		return `
-		<div class="media my-1">
-			<div class="media-body text-right ml-5 mr-3">
-				<div class="small">${msg.regDate.toDatetime()}</div>
-				<div class="talk-message receive-message">
-					${msg.message}</div>
-			</div>
-			<img src="/butter/member/avata?userId=${msg.withTalk}"
-				class="d-flex mr-3 rounded-circle avata">
-		</div>`;
+		<tr>
+			<td style="width:100px">
+				<a href="image/${image.imageId}" data-lightbox="roadtrip">
+					<img src="thumb/${image.imageId}" 
+							width="100"
+							alt="${image.title}"
+							class="z-depth-2 rounded"/>
+				</a>
+			</td>
+			<td>
+				<p>
+					<b>${image.title}</b>
+					<a href="download/${image.imageId}"> 
+						<i class="fa fa-download"></i>
+					</a>
+					 ${image.title}
+				</p>
+			</td>
+		</tr>`;
 	}
-	
 }
 
-class Talk{
+class Image{
 	constructor(opt){
 		this.opt = opt;	//this는 talk 인스턴스
 		
@@ -78,15 +81,13 @@ class Talk{
 	}
 	
 	// 메시지 수신 이벤트 핸들러
-	onmessage(msg) { 
-		this.opt.panel.append(talkTempl.receiveTempl(msg)); 
-		this.opt.panel.parent().scrollTop(this.opt.panel.height()); 
+	onmessage(item) { 
+		this.opt.panel.append(imageTempl.imageTempl(item)); 
 	} 
 	
 	// 전송 메시지 템플릿 추가 
-	addSendTempl(msg) { 
-		this.opt.panel.append(talkTempl.sendTempl(msg)); 
-		this.opt.panel.parent().scrollTop(this.opt.panel.height()); 
+	addImageTempl(item) { 
+		this.opt.panel.append(imageTempl.imageTempl(item)); 
 	}
 	
 	// 메시지 전송
@@ -104,28 +105,17 @@ class Talk{
 		return msg; 
 	}
 }
-
-$.fn.talk = function(opt) { 
-	opt = $.extend(opt, {panel: this}); // 메시지 출력 엘리먼트 설정 
-	var talk = new Talk(opt); 
+$.fn.gallery = function(opt) { 
+	var self = this;
+	var api = new Rest(opt.url);
 	
-	function send(){
-		var message = opt.sendMessage.val(); 
-		if(message.trim() == '') return; // 메시지 없는 경우 취소 
-		
-		var msg = talk.send(message); // 메시지 전송 
-		talk.addSendTempl(msg); // 전송 Talk 화면 출력 
-		opt.sendMessage.val('').focus(); // 전송 메시지 입력 창 지움 
-	}
-	
-	// 전송 버튼 클릭시 send() 호출
-	opt.sendBtn.click(send);
-	
-	//메시지 작성 input 엘리먼트의 엔터 처리
-	opt.sendMessage.keypress(function(e){
-		if(e.keyCode==13){	//엔터인 경우
-			send();
-		}
+	api.list('', function(images){
+		images.forEach(function(image){
+			var tr = templ.trTempl(image);
+			self.find('tbody').append(tr);
+		});
 	});
+	
+	return self;
 }
 	

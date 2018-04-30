@@ -32,6 +32,11 @@ public class GalleryController {
 		
 	}
 	
+	@RequestMapping("/api_view")
+	public void api_view() throws Exception{
+		
+	}
+	
 	@RequestMapping("/lightbox")
 	public void lightbox(@RequestParam(value="page", defaultValue="1") int page,
 						Model model) throws Exception{
